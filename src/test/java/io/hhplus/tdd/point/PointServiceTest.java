@@ -90,6 +90,9 @@ class PointServiceTest {
             assertEquals(updateUser.point(), resultuser.point());
         }
 
+        /*
+        포인트 충전시 한도 초과일 경우 테스트
+         */
         @Test
         @DisplayName("포인트 충전 한도 초과 테스트")
         void testPointChargeLimitExceeded() {
