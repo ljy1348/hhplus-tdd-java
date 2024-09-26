@@ -2,10 +2,7 @@ package io.hhplus.tdd.point;
 
 import io.hhplus.tdd.database.PointHistoryTable;
 import io.hhplus.tdd.database.UserPointTable;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -14,6 +11,18 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * 포인트 조회, 포인트 내역 조회 테스트 - 단순 조회(로직 없음)이므로 테스트 작성 x
+ * 포인트 충전, 사용시 포인트 음수 인지 확인 하는 테스트 - 값의 유효성 검사는 컨트롤러 단에서 진행
+ *
+ * 진행하는 테스트
+ * 포인트 사용
+ *  1. 포인트 정상 사용
+ *  2. 보유 포인트 이상 사용 시 에러
+ * 포인트 충전
+ *  1. 포인트 정상 충전
+ *  2. 포인트 보유 한도 초과시 에러
+ */
 @ExtendWith(MockitoExtension.class)
 class PointServiceTest {
 
@@ -26,10 +35,15 @@ class PointServiceTest {
     @InjectMocks
     PointService pointService;
 
-    long originPoint = 1000L;
-    long id = 1L;
-
+    static long originPoint;
+    static long id;
     UserPoint mockUser;
+
+    @BeforeAll
+    static void initAll() {
+        originPoint = 1000L;
+        id = 1L;
+    }
 
     @BeforeEach
     void setUp() {
