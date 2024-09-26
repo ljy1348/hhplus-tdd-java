@@ -38,7 +38,7 @@ public class PointConcurrencyTest {
 
         // given
         final int threadCount = 100;
-        final ExecutorService executorService = Executors.newFixedThreadPool(32);
+        final ExecutorService executorService = Executors.newFixedThreadPool(25);
         final CountDownLatch countDownLatch = new CountDownLatch(threadCount);
 
         pointService.charge(id, 9999L);
@@ -71,7 +71,7 @@ public class PointConcurrencyTest {
         long id = 2L;
 
         final int threadCount = 100;
-        final ExecutorService executorService = Executors.newFixedThreadPool(32);
+        final ExecutorService executorService = Executors.newFixedThreadPool(25);
         final CountDownLatch countDownLatch = new CountDownLatch(threadCount);
 
         pointService.charge(id, 10L);
